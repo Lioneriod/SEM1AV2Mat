@@ -1,0 +1,12 @@
+body{
+  font-family: 'Roboto', 'Raleway', 'Open Sans', 'Helvetica Neue', sans-serif;
+  display: flex;
+/*the body has a natural margin within it, so we remove it*/
+  margin: 0;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.title{
+  font-size: 20px
+}
