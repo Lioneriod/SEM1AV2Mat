@@ -1,12 +1,48 @@
 body{
   font-family: 'Roboto', 'Raleway', 'Open Sans', 'Helvetica Neue', sans-serif;
-  display: flex;
 /*the body has a natural margin within it, so we remove it*/
   margin: 0;
-  flex-direction: column;
+  padding: 0;
   min-height: 100vh;
+}
+
+main{
+  margin:0;
+  padding:0;
 }
 
 .title{
   font-size: 20px
+}
+
+#svg-map path {
+  fill: #0094d9
+}
+
+#svg-map text {
+  fill: #ffffff;
+  font: 12px 'Roboto', sans-serif;
+  cursor: pointer;
+}
+
+#svg-map a {
+  text-decoration: none;
+}
+
+#svg-map a:hover {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+#svg-map a:hover path {
+  fill: #003399 !important;
+}
+
+#svg-map .circle {
+  fill: #66ccff;
+}
+
+#svg-map a:hover .circle {
+  fill: #003399 !important;
+  cursor: pointer;
 }
