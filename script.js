@@ -108,22 +108,37 @@ const statesStartObj = {
   },
 };
 
+const svg = document.getElementById("svg-map");
+norte1 = svg.querySelectorAll(".norte1");
+const stateInput = document.querySelector(".input");
 const plateInput1 = "OXM2045";
 const plateInput2 = "ZZZ2045";
+
 function stateId(plate) {
+  var index = 0,
+    length = norte1.length;
+  for (; index < length; index++) {
+    norte1[index].style.fill = "#03a2ec";
+  }
   function stateNamer(x, y) {
     switch (y) {
       case "statesIdAM":
         x = "Amazonas";
         console.log(`A placa é do estado do ${x}`);
+        const stateStyleAM = svg.getElementById("amazonas");
+        stateStyleAM.style.fill = "#ec6c03";
         break;
       case "statesIdAC":
         x = "Acre";
         console.log(`A placa é do estado do ${x}`);
+        const stateStyleAC = svg.getElementById("acre");
+        stateStyleAC.style.fill = "#ec6c03";
         break;
       case "statesIdRO":
         x = "Rondônia";
         console.log(`A placa é do estado de ${x}`);
+        const stateStyleRO = svg.getElementById("rondonia");
+        stateStyleRO.style.fill = "#ec6c03";
         break;
     }
   }
