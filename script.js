@@ -162,7 +162,7 @@ function stateId(plate) {
       }
     }
   }
-  // If no state is found, return a message
+  // If no state is found, return this message
   console.log("Essa placa não pertence a nenhum estado da região Norte 1");
 }
 
