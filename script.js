@@ -111,19 +111,19 @@ const statesStartObj = {
 const plateInput1 = "OXM2045";
 const plateInput2 = "ZZZ2045";
 function stateId(plate) {
-  function stateNamer(x, y, z) {
-    switch (z) {
+  function stateNamer(x, y) {
+    switch (y) {
       case "statesIdAM":
         x = "Amazonas";
-        console.log(`A placa é do estado do ${x} na faixa ${y}`);
+        console.log(`A placa é do estado do ${x}`);
         break;
       case "statesIdAC":
         x = "Acre";
-        console.log(`A placa é do estado do ${x} na faixa ${y}`);
+        console.log(`A placa é do estado do ${x}`);
         break;
       case "statesIdRO":
         x = "Rondônia";
-        console.log(`A placa é do estado de ${x} na faixa ${y}`);
+        console.log(`A placa é do estado de ${x}`);
         break;
     }
   }
@@ -142,7 +142,7 @@ function stateId(plate) {
         //stateStartKey = The key for the state object
         //stateKey = The key containing the fist number that matched with the plate
         if (plateSumNum.toString() == stateObj[stateKey][0].toString()) {
-          return stateNamer(stateName, stateKey, stateStartKey);
+          return stateNamer(stateName, stateStartKey);
         } else if (
           plateSumNum[0] >= stateObj[stateKey][0][0] &&
           plateSumNum[0] <= stateObj[stateKey][1][0]
@@ -155,7 +155,7 @@ function stateId(plate) {
               plateSumNum[2] >= stateObj[stateKey][0][2] &&
               plateSumNum[2] <= stateObj[stateKey][1][2]
             ) {
-              return stateNamer(stateName, stateKey, stateStartKey);
+              return stateNamer(stateName, stateStartKey);
             }
           }
         }
