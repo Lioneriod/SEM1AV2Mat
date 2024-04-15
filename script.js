@@ -120,6 +120,8 @@ inputActivate.addEventListener("click", () => {
     for (; index < length; index++) {
       norte1[index].style.fill = "#03a2ec";
     }
+    document.querySelector("#resultNumbers").innerHTML = "";
+    document.querySelector("#plateList").innerHTML = "";
     function stateNamer(x, y) {
       switch (y) {
         case "statesIdAM":
