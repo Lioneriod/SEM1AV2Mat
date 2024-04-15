@@ -1,10 +1,13 @@
 body{
-  font-family: 'Roboto', 'Raleway', 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: "Baloo 2",sans-serif;
 /*the body has a natural margin within it, so we remove it*/
   margin: 0;
   padding: 0;
   min-height: 100vh;
   display: flex;
+  gap: 50px;
+  margin:10px;
+  padding:10px;
 }
 
 main{
@@ -12,12 +15,14 @@ main{
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  margin:10px;
-  padding:10px;
+  gap: 0;
+
 }
 
 .title{
-  font-size: 20px
+  font-size: 30px;
+  width: 300px;
+  text-align: center;
 }
 
 #svg-map path {
@@ -55,6 +60,32 @@ main{
 .right{
   display: flex;
   flex-direction: column;
+  text-align: center;
   align-items: center;
   justify-content: center;
+  gap: 20px;
+}
+
+.results{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 30px;
+  text-align: center;
+}
+
+.bigText{
+  font-size: 30px;
+}
+
+input{
+  border: 1px solid #03a2ec;
+  border-radius: 10px;
+  text-align: center;
+}
+
+#plateList{
+  list-style-type: none;
+  padding: 0;
+  margin: 0; 
 }

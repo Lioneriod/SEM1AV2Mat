@@ -110,76 +110,111 @@ const statesStartObj = {
 
 const svg = document.getElementById("svg-map");
 norte1 = svg.querySelectorAll(".norte1");
-const stateInput = document.querySelector(".input");
-const plateInput1 = "OXM2045";
-const plateInput2 = "ZZZ2045";
 
-function stateId(plate) {
-  var index = 0,
-    length = norte1.length;
-  for (; index < length; index++) {
-    norte1[index].style.fill = "#03a2ec";
-  }
-  function stateNamer(x, y) {
-    switch (y) {
-      case "statesIdAM":
-        x = "Amazonas";
-        console.log(`A placa é do estado do ${x}`);
-        const stateStyleAM = svg.getElementById("amazonas");
-        stateStyleAM.style.fill = "#ec6c03";
-        break;
-      case "statesIdAC":
-        x = "Acre";
-        console.log(`A placa é do estado do ${x}`);
-        const stateStyleAC = svg.getElementById("acre");
-        stateStyleAC.style.fill = "#ec6c03";
-        break;
-      case "statesIdRO":
-        x = "Rondônia";
-        console.log(`A placa é do estado de ${x}`);
-        const stateStyleRO = svg.getElementById("rondonia");
-        stateStyleRO.style.fill = "#ec6c03";
-        break;
+const inputActivate = document.getElementById("activate");
+inputActivate.addEventListener("click", () => {
+  const input = document.getElementById("plateInput").value;
+  function stateId(plate) {
+    var index = 0,
+      length = norte1.length;
+    for (; index < length; index++) {
+      norte1[index].style.fill = "#03a2ec";
     }
-  }
-  let plateSum = [];
-  let plateCut = plate.slice(0, 3);
-  for (let i = 0; i < 3; i++) {
-    let plateNumber = plateConvert[plateCut[i].toLowerCase()];
-    plateSum.push(plateNumber);
-  }
-  plateSumNum = plateSum.map(Number);
-  for (const stateStartKey in statesStartObj) {
-    let stateName = "";
-    const stateObj = statesStartObj[stateStartKey];
-    for (const stateKey in stateObj) {
-      if (plateSumNum[0] == stateObj[stateKey][0][0]) {
-        //stateStartKey = The key for the state object
-        //stateKey = The key containing the fist number that matched with the plate
-        if (plateSumNum.toString() == stateObj[stateKey][0].toString()) {
-          return stateNamer(stateName, stateStartKey);
-        } else if (
-          plateSumNum[0] >= stateObj[stateKey][0][0] &&
-          plateSumNum[0] <= stateObj[stateKey][1][0]
-        ) {
-          if (
-            plateSumNum[1] >= stateObj[stateKey][0][1] &&
-            plateSumNum[1] <= stateObj[stateKey][1][1]
+    function stateNamer(x, y) {
+      switch (y) {
+        case "statesIdAM":
+          x = "Amazonas";
+          const stateStyleAM = svg.getElementById("amazonas");
+          document.querySelector("#result").innerHTML =
+            "O estado dessa placa é " + x;
+          document.querySelector("#resultNumbers").innerHTML =
+            "Esse estado possui as seguintes placas:";
+          document.querySelector("#plateList").innerHTML =
+            "JWF a JXY<br>NOI a NPB<br>OAA a OAO<br>OXM<br>PHA a PHZ<br>QZA a QZZ";
+          stateStyleAM.style.fill = "#ec6c03";
+          break;
+        case "statesIdAC":
+          x = "Acre";
+          const stateStyleAC = svg.getElementById("acre");
+          document.querySelector("#result").innerHTML =
+            "O estado dessa placa é " + x;
+          document.querySelector("#resultNumbers").innerHTML =
+            "Esse estado possui as seguintes placas:";
+          document.querySelector("#plateList").innerHTML =
+            "MZN a NAG<br>NXR a NXT<br>OVG<br>OXP<br>QLU a QLZ<br>QWM a QWQ";
+          stateStyleAC.style.fill = "#ec6c03";
+          break;
+        case "statesIdRO":
+          x = "Rondônia";
+          const stateStyleRO = svg.getElementById("rondonia");
+          document.querySelector("#result").innerHTML =
+            "O estado dessa placa é " + x;
+          document.querySelector("#resultNumbers").innerHTML =
+            "Esse estado possui as seguintes placas:";
+          document.querySelector("#plateList").innerHTML =
+            "NBB a NEH<br>OHL a OHW<br>OXL<br>QRA<br>QTA a QTJ<br>RSU a RSZ";
+          stateStyleRO.style.fill = "#ec6c03";
+          break;
+      }
+    }
+    let plateSum = [];
+    let plateCut = plate.slice(0, 3);
+    for (let i = 0; i < 3; i++) {
+      let plateNumber = plateConvert[plateCut[i].toLowerCase()];
+      plateSum.push(plateNumber);
+    }
+    plateSumNum = plateSum.map(Number);
+    for (const stateStartKey in statesStartObj) {
+      let stateName = "";
+      const stateObj = statesStartObj[stateStartKey];
+      for (const stateKey in stateObj) {
+        if (plateSumNum[0] == stateObj[stateKey][0][0]) {
+          //stateStartKey = The key for the state object
+          //stateKey = The key containing the fist number that matched with the plate
+          if (plateSumNum.toString() == stateObj[stateKey][0].toString()) {
+            return stateNamer(stateName, stateStartKey);
+          } else if (
+            plateSumNum[0] >= stateObj[stateKey][0][0] &&
+            plateSumNum[0] <= stateObj[stateKey][1][0]
           ) {
             if (
-              plateSumNum[2] >= stateObj[stateKey][0][2] &&
-              plateSumNum[2] <= stateObj[stateKey][1][2]
+              plateSumNum[1] >= stateObj[stateKey][0][1] &&
+              plateSumNum[1] <= stateObj[stateKey][1][1]
             ) {
-              return stateNamer(stateName, stateStartKey);
+              if (
+                plateSumNum[2] >= stateObj[stateKey][0][2] &&
+                plateSumNum[2] <= stateObj[stateKey][1][2]
+              ) {
+                return stateNamer(stateName, stateStartKey);
+              }
             }
           }
         }
       }
     }
+    // If no state is found, return this message
+    document.querySelector("#result").innerHTML =
+      "Nenhum que exista na região Norte 1";
   }
-  // If no state is found, return this message
-  console.log("Essa placa não pertence a nenhum estado da região Norte 1");
-}
-
-stateId(plateInput1);
-stateId(plateInput2);
+  function plateTester(plate) {
+    let tester = 0;
+    for (let i = 0; i < 7; i++) {
+      if (i < 3 || i === 4) {
+        if (plate[i] == plate[i].toString()) {
+          tester++;
+        }
+      } else {
+        if (plate[i] == parseInt(plate[i])) {
+          tester++;
+        }
+      }
+    }
+    return tester;
+  }
+  if (plateTester(input)) {
+    stateId(input);
+  } else {
+    document.querySelector("#result").innerHTML =
+      "Essa placa não está no formato Mercosul, portanto não pôde ser lida";
+  }
+});
