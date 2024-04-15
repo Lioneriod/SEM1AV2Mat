@@ -108,12 +108,39 @@ const statesStartObj = {
   },
 };
 
+const input = document.getElementById("plateInput").value;
 const svg = document.getElementById("svg-map");
 norte1 = svg.querySelectorAll(".norte1");
+const plateClickAM = svg.getElementById("amazonas");
+plateClickAM.addEventListener("click", () => {
+  document.querySelector("#result").innerHTML =
+    "Você selecionou o estado do Amazonas";
+  document.querySelector("#resultNumbers").innerHTML =
+    "Esse estado possui as seguintes placas:";
+  document.querySelector("#plateList").innerHTML =
+    "JWF a JXY<br>NOI a NPB<br>OAA a OAO<br>OXM<br>PHA a PHZ<br>QZA a QZZ";
+});
+const plateClickAC = svg.getElementById("acre");
+plateClickAC.addEventListener("click", () => {
+  document.querySelector("#result").innerHTML =
+    "Você selecionou o estado do Acre";
+  document.querySelector("#resultNumbers").innerHTML =
+    "Esse estado possui as seguintes placas:";
+  document.querySelector("#plateList").innerHTML =
+    "MZN a NAG<br>NXR a NXT<br>OVG<br>OXP<br>QLU a QLZ<br>QWM a QWQ";
+});
+const plateClickRO = svg.getElementById("rondonia");
+plateClickRO.addEventListener("click", () => {
+  document.querySelector("#result").innerHTML =
+    "Você selecionou o estado de Rondônia";
+  document.querySelector("#resultNumbers").innerHTML =
+    "Esse estado possui as seguintes placas:";
+  document.querySelector("#plateList").innerHTML =
+    "NBB a NEH<br>OHL a OHW<br>OXL<br>QRA<br>QTA a QTJ<br>RSU a RSZ";
+});
 
 const inputActivate = document.getElementById("activate");
 inputActivate.addEventListener("click", () => {
-  const input = document.getElementById("plateInput").value;
   function stateId(plate) {
     var index = 0,
       length = norte1.length;
