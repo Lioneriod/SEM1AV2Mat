@@ -107,8 +107,6 @@ const statesStartObj = {
     ],
   },
 };
-
-const input = document.getElementById("plateInput").value;
 const svg = document.getElementById("svg-map");
 norte1 = svg.querySelectorAll(".norte1");
 const plateClickAM = svg.getElementById("amazonas");
@@ -141,6 +139,7 @@ plateClickRO.addEventListener("click", () => {
 
 const inputActivate = document.getElementById("activate");
 inputActivate.addEventListener("click", () => {
+  const input = document.getElementById("plateInput").value;
   function stateId(plate) {
     var index = 0,
       length = norte1.length;
@@ -218,12 +217,34 @@ inputActivate.addEventListener("click", () => {
               }
             }
           }
+        } else if (plateSumNum[0] > stateObj[stateKey][0][0]) {
+          if (plateSumNum.toString() == stateObj[stateKey][0].toString()) {
+            return stateNamer(stateName, stateStartKey);
+          } else if (
+            plateSumNum[0] >= stateObj[stateKey][0][0] &&
+            plateSumNum[0] <= stateObj[stateKey][1][0]
+          ) {
+            if (
+              plateSumNum[1] >= stateObj[stateKey][1][1] &&
+              plateSumNum[1] <= stateObj[stateKey][0][1]
+            ) {
+              if (
+                (plateSumNum[2] >= 1 &&
+                  plateSumNum[2] <= stateObj[stateKey][1][2]) ||
+                (plateSumNum[2] <= 26 &&
+                  plateSumNum[2] >= stateObj[stateKey][0][2])
+              ) {
+                console.log(plateSumNum);
+                return stateNamer(stateName, stateStartKey);
+              }
+            }
+          }
         }
+        // If no state is found, return this message
+        document.querySelector("#result").innerHTML =
+          "Nenhum que exista na região Norte 1";
       }
     }
-    // If no state is found, return this message
-    document.querySelector("#result").innerHTML =
-      "Nenhum que exista na região Norte 1";
   }
   function plateTester(plate) {
     let tester = 0;
