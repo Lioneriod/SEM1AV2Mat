@@ -148,6 +148,7 @@ inputActivate.addEventListener("click", () => {
     }
     document.querySelector("#resultNumbers").innerHTML = "";
     document.querySelector("#plateList").innerHTML = "";
+    document.querySelector("#result").innerHTML = "";
     function stateNamer(x, y) {
       switch (y) {
         case "statesIdAM":
@@ -191,58 +192,64 @@ inputActivate.addEventListener("click", () => {
       let plateNumber = plateConvert[plateCut[i].toLowerCase()];
       plateSum.push(plateNumber);
     }
-    plateSumNum = plateSum.map(Number);
+    let plateSumNum = plateSum.map(Number);
     for (const stateStartKey in statesStartObj) {
       let stateName = "";
       const stateObj = statesStartObj[stateStartKey];
       for (const stateKey in stateObj) {
-        if (plateSumNum[0] == stateObj[stateKey][0][0]) {
-          //stateStartKey = The key for the state object
-          //stateKey = The key containing the fist number that matched with the plate
-          if (plateSumNum.toString() == stateObj[stateKey][0].toString()) {
-            return stateNamer(stateName, stateStartKey);
-          } else if (
-            plateSumNum[0] >= stateObj[stateKey][0][0] &&
-            plateSumNum[0] <= stateObj[stateKey][1][0]
+        if (
+          plateSumNum.toString() == stateObj[stateKey][0].toString() ||
+          plateSumNum.toString() == stateObj[stateKey][1].toString()
+        ) {
+          return stateNamer(stateName, stateStartKey);
+        } else if (
+          stateObj[stateKey][0][0] !== stateObj[stateKey][1][0] &&
+          plateSumNum[0] == stateObj[stateKey][1][0]
+        ) {
+          if (
+            plateSumNum[1] <= stateObj[stateKey][1][1] &&
+            plateSumNum[2] <= stateObj[stateKey][1][2]
           ) {
-            if (
-              plateSumNum[1] >= stateObj[stateKey][0][1] &&
-              plateSumNum[1] <= stateObj[stateKey][1][1]
-            ) {
-              if (
-                plateSumNum[2] >= stateObj[stateKey][0][2] &&
-                plateSumNum[2] <= stateObj[stateKey][1][2]
-              ) {
-                return stateNamer(stateName, stateStartKey);
-              }
-            }
+            return stateNamer(stateName, stateStartKey);
           }
-        } else if (plateSumNum[0] > stateObj[stateKey][0][0]) {
-          if (plateSumNum.toString() == stateObj[stateKey][0].toString()) {
+        } else if (
+          stateObj[stateKey][0][0] !== stateObj[stateKey][1][0] &&
+          plateSumNum[0] == stateObj[stateKey][0][0]
+        ) {
+          if (
+            plateSumNum[1] >= stateObj[stateKey][0][1] &&
+            plateSumNum[2] >= stateObj[stateKey][0][2]
+          ) {
             return stateNamer(stateName, stateStartKey);
-          } else if (
-            plateSumNum[0] >= stateObj[stateKey][0][0] &&
-            plateSumNum[0] <= stateObj[stateKey][1][0]
+          }
+        } else if (
+          plateSumNum[0] >= stateObj[stateKey][0][0] &&
+          plateSumNum[1] >= stateObj[stateKey][0][1]
+        ) {
+          if (
+            plateSumNum[2] >= stateObj[stateKey][0][2] &&
+            stateObj[stateKey][0][2] < stateObj[stateKey][1][2]
           ) {
             if (
-              plateSumNum[1] >= stateObj[stateKey][1][1] &&
-              plateSumNum[1] <= stateObj[stateKey][0][1]
+              plateSumNum[0] <= stateObj[stateKey][1][0] &&
+              plateSumNum[1] <= stateObj[stateKey][1][1] &&
+              plateSumNum[2] <= stateObj[stateKey][1][2]
             ) {
-              if (
-                (plateSumNum[2] >= 1 &&
-                  plateSumNum[2] <= stateObj[stateKey][1][2]) ||
-                (plateSumNum[2] <= 26 &&
-                  plateSumNum[2] >= stateObj[stateKey][0][2])
-              ) {
-                console.log(plateSumNum);
-                return stateNamer(stateName, stateStartKey);
-              }
+              return stateNamer(stateName, stateStartKey);
+            }
+          } else if (
+            plateSumNum[2] <= stateObj[stateKey][0][2] &&
+            stateObj[stateKey][0][2] > stateObj[stateKey][1][2]
+          ) {
+            if (
+              plateSumNum[0] <= stateObj[stateKey][1][0] &&
+              plateSumNum[1] <= stateObj[stateKey][1][1] &&
+              plateSumNum[2] <= stateObj[stateKey][1][2]
+            ) {
+              return stateNamer(stateName, stateStartKey);
             }
           }
         }
-        // If no state is found, return this message
-        document.querySelector("#result").innerHTML =
-          "Nenhum que exista na região Norte 1";
       }
     }
   }
