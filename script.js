@@ -201,7 +201,7 @@ inputActivate.addEventListener("click", () => {
           plateSumNum.toString() == stateObj[stateKey][0].toString() ||
           plateSumNum.toString() == stateObj[stateKey][1].toString()
         ) {
-          return stateNamer(stateName, stateStartKey);
+          stateNamer(stateName, stateStartKey);
         } else if (
           stateObj[stateKey][0][0] !== stateObj[stateKey][1][0] &&
           plateSumNum[0] == stateObj[stateKey][1][0]
@@ -210,7 +210,7 @@ inputActivate.addEventListener("click", () => {
             plateSumNum[1] <= stateObj[stateKey][1][1] &&
             plateSumNum[2] <= stateObj[stateKey][1][2]
           ) {
-            return stateNamer(stateName, stateStartKey);
+            stateNamer(stateName, stateStartKey);
           }
         } else if (
           stateObj[stateKey][0][0] !== stateObj[stateKey][1][0] &&
@@ -220,7 +220,7 @@ inputActivate.addEventListener("click", () => {
             plateSumNum[1] >= stateObj[stateKey][0][1] &&
             plateSumNum[2] >= stateObj[stateKey][0][2]
           ) {
-            return stateNamer(stateName, stateStartKey);
+            stateNamer(stateName, stateStartKey);
           }
         } else if (
           plateSumNum[0] >= stateObj[stateKey][0][0] &&
@@ -235,7 +235,7 @@ inputActivate.addEventListener("click", () => {
               plateSumNum[1] <= stateObj[stateKey][1][1] &&
               plateSumNum[2] <= stateObj[stateKey][1][2]
             ) {
-              return stateNamer(stateName, stateStartKey);
+              stateNamer(stateName, stateStartKey);
             }
           } else if (
             plateSumNum[2] <= stateObj[stateKey][0][2] &&
@@ -246,7 +246,7 @@ inputActivate.addEventListener("click", () => {
               plateSumNum[1] <= stateObj[stateKey][1][1] &&
               plateSumNum[2] <= stateObj[stateKey][1][2]
             ) {
-              return stateNamer(stateName, stateStartKey);
+              stateNamer(stateName, stateStartKey);
             }
           }
         }
